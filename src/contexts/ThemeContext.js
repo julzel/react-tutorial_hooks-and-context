@@ -10,10 +10,15 @@ const defaultThemeState = {
 
 const ThemeContextProvider = ({ children }) => {
 
-  const [themeState] = useState(defaultThemeState)
+  const [themeState, setThemeState] = useState(defaultThemeState)
+  
+  const toggleTheme = () => {
+    const isLightTheme = !themeState.isLightTheme
+    setThemeState({ ...themeState, isLightTheme })
+  }
 
   return ( 
-    <ThemeContext.Provider value={{ ...themeState }}>
+    <ThemeContext.Provider value={{ ...themeState, toggleTheme }}>
       {children}
     </ThemeContext.Provider> 
   )
